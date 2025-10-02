@@ -1,0 +1,220 @@
+/* Your custom css code goes here */
+
+/* Events Page Enhancements */
+.probootstrap-featured-news-box {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  margin-bottom: 30px;
+}
+
+.probootstrap-featured-news-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.probootstrap-date-overlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #2c3e50;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.probootstrap-date-overlay .day {
+  display: block;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.probootstrap-date-overlay .month {
+  display: block;
+  font-size: 12px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.probootstrap-category {
+  background: #3498db;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.probootstrap-time {
+  color: #7f8c8d;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.probootstrap-time i {
+  margin-right: 5px;
+}
+
+/* Event Categories Styling */
+.probootstrap-service-2-colored {
+  text-align: center;
+  padding: 30px 20px;
+  border-radius: 8px;
+  background: #f8f9fa;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.probootstrap-service-2-colored:hover {
+  background: #e9ecef;
+  transform: translateY(-3px);
+}
+
+.probootstrap-service-2-colored .icon {
+  margin-bottom: 20px;
+}
+
+.probootstrap-service-2-colored .icon i {
+  font-size: 48px;
+  color: #3498db;
+}
+
+/* Timeline Styling */
+.probootstrap-timeline {
+  position: relative;
+  padding: 20px 0;
+}
+
+.probootstrap-timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #3498db;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+  padding-right: 40px;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+  padding-left: 40px;
+  text-align: left;
+}
+
+.timeline-marker {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #3498db;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  top: 0;
+  z-index: 3;
+}
+
+.timeline-item:nth-child(odd) .timeline-marker {
+  right: -10px;
+}
+
+.timeline-item:nth-child(even) .timeline-marker {
+  left: -10px;
+}
+
+.timeline-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.timeline-content h3 {
+  color: #2c3e50;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.timeline-content h4 {
+  color: #3498db;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.timeline-location {
+  color: #7f8c8d;
+  font-size: 14px;
+  margin-top: 10px;
+  display: block;
+}
+
+.timeline-location i {
+  margin-right: 5px;
+}
+
+/* Responsive Timeline */
+@media (max-width: 768px) {
+  .probootstrap-timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    left: 0 !important;
+    padding-left: 50px !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+  }
+
+  .timeline-marker {
+    left: 10px !important;
+    right: auto !important;
+  }
+}
+
+/* Enhanced Event Cards */
+.probootstrap-featured-news-box .probootstrap-text {
+  padding: 20px;
+}
+
+.probootstrap-featured-news-box h3 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.probootstrap-featured-news-box p {
+  color: #7f8c8d;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.probootstrap-location {
+  color: #7f8c8d;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.probootstrap-location i {
+  margin-right: 5px;
+  color: #3498db;
+}
