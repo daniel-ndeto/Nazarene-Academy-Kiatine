@@ -1,6 +1,8 @@
 /* Needed gulp config */
 var gulp = require("gulp");
-var sass = require("gulp-sass");
+var gulpSass = require("gulp-sass");
+var sassCompiler = require("sass");
+var sass = gulpSass(sassCompiler);
 var uglify = require("gulp-uglify");
 var rename = require("gulp-rename");
 var notify = require("gulp-notify");
