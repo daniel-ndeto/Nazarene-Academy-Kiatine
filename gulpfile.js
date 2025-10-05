@@ -142,11 +142,16 @@ gulp.task("browser-sync", function () {
 });
 
 /* Watch scss, js and html files, doing different things with each. */
-gulp.task("default", ["sass", "scripts", "browser-sync"], function () {
+function watchFiles() {
   /* Watch scss, run the sass task on change. */
-  gulp.watch(["scss/*.scss", "scss/**/*.scss"], ["sass"]);
+  gulp.watch(["scss/*.scss", "scss/**/*.scss"], gulp.series("sass"));
   /* Watch app.js file, run the scripts task on change. */
-  gulp.watch(["js/main.js"], ["minify-main"]);
+  gulp.watch(["js/main.js"], gulp.series("minify-main"));
   /* Watch .html files, run the bs-reload task on change. */
-  gulp.watch(["*.html"], ["bs-reload"]);
-});
+  gulp.watch(["*.html"], gulp.series("bs-reload"));
+}
+
+gulp.task(
+  "default",
+  gulp.series(gulp.parallel("sass", "scripts", "browser-sync"), watchFiles)
+);
