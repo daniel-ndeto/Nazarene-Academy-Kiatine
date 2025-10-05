@@ -12,14 +12,7 @@ var plumber = require("gulp-plumber");
 var browserSync = require("browser-sync");
 var reload = browserSync.reload;
 const sourcemaps = require("gulp-sourcemaps");
-const autoprefixer = require("gulp-autoprefixer");
-
-// (Moved to end of file)
-// Production build task: runs all main asset tasks
-gulp.task(
-  "build",
-  gulp.series("sass", "scripts", "minify-main", "merge-styles")
-);
+const autoprefixer = require("gulp-autoprefixer").default;
 
 /* Setup scss path */
 var paths = {
@@ -63,23 +56,18 @@ gulp.task("minify-main", function () {
     .pipe(gulp.dest("js"));
 });
 
-/* Sass task */
-gulp.task("sass", function () {
-  gulp
+// Sass task as a named function for Gulp 4.x compatibility
+function sassTask() {
+  return gulp
     .src("scss/style.scss")
     .pipe(plumber())
     .pipe(
       sass({
         errLogToConsole: true,
-
-        //outputStyle: 'compressed',
-        // outputStyle: 'compact',
-        // outputStyle: 'nested',
         outputStyle: "expanded",
         precision: 10,
       })
     )
-
     .pipe(sourcemaps.init())
     .pipe(
       autoprefixer({
@@ -88,13 +76,12 @@ gulp.task("sass", function () {
       })
     )
     .pipe(gulp.dest("css"))
-
     .pipe(rename({ suffix: ".min" }))
     .pipe(minifycss())
     .pipe(gulp.dest("css"))
-    /* Reload the browser CSS after every change */
     .pipe(reload({ stream: true }));
-});
+}
+gulp.task("sass", sassTask);
 
 gulp.task("merge-styles", function () {
   return (
@@ -147,7 +134,7 @@ gulp.task("browser-sync", function () {
 /* Watch scss, js and html files, doing different things with each. */
 function watchFiles() {
   /* Watch scss, run the sass task on change. */
-  gulp.watch(["scss/*.scss", "scss/**/*.scss"], gulp.series("sass"));
+  gulp.watch(["scss/*.scss", "scss/**/*.scss"], gulp.series(sassTask));
   /* Watch app.js file, run the scripts task on change. */
   gulp.watch(["js/main.js"], gulp.series("minify-main"));
   /* Watch .html files, run the bs-reload task on change. */
@@ -156,5 +143,10 @@ function watchFiles() {
 
 gulp.task(
   "default",
-  gulp.series(gulp.parallel("sass", "scripts", "browser-sync"), watchFiles)
+  gulp.series(gulp.parallel(sassTask, "scripts", "browser-sync"), watchFiles)
+);
+// Production build task: runs all main asset tasks
+gulp.task(
+  "build",
+  gulp.series(sassTask, "scripts", "minify-main", "merge-styles")
 );
