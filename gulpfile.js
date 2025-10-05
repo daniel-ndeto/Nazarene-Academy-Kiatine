@@ -1,10 +1,4 @@
-// Production build task: runs all main asset tasks
-gulp.task(
-  "build",
-  gulp.series("sass", "scripts", "minify-main", "merge-styles")
-);
 /* Needed gulp config */
-
 var gulp = require("gulp");
 var sass = require("gulp-sass");
 var uglify = require("gulp-uglify");
@@ -17,6 +11,12 @@ var browserSync = require("browser-sync");
 var reload = browserSync.reload;
 const sourcemaps = require("gulp-sourcemaps");
 const autoprefixer = require("gulp-autoprefixer");
+
+// Production build task: runs all main asset tasks
+gulp.task(
+  "build",
+  gulp.series("sass", "scripts", "minify-main", "merge-styles")
+);
 
 /* Setup scss path */
 var paths = {
